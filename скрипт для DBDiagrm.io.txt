@@ -1,0 +1,51 @@
+Table Transaction{
+  transaction_id int [primary key]
+  prod_prim_id int
+  customer_id int
+  transaction_date date
+  online_order bool
+  order_status varchar
+  list_price float
+  standart_cost float
+}
+Table Product{
+  prod_prim_id int [primary key]
+  product_id int
+  brand varchar
+  product_line varchar
+  product_class varchar
+  product_size varchar
+}
+Table Customer{
+  customer_id int [primary key]
+  first_name varchar
+  last_name varchar
+  gender varchar
+  DOB date
+  job_title varchar
+  job_industry_category varchar
+  wealth_segment varchar
+  deceased_indicator varchar
+  own_car varchar
+  property_valuation int
+  country varchar 
+}
+Table Adress{
+  customer_id int [primary key]
+  house varchar
+  street varchar
+  state varchar
+}
+Table Postcode{
+  customer_id int [primary key]
+  postcode int
+}
+
+
+Ref: "Transaction"."prod_prim_id" < "Product"."prod_prim_id"
+
+Ref: "Transaction"."customer_id" < "Customer"."customer_id"
+
+Ref: "Customer"."customer_id" < "Adress"."customer_id"
+
+Ref: "Customer"."customer_id" < "Postcode"."customer_id"
